@@ -8,7 +8,7 @@ pipeline{
         environment = ''
         component = 'backend'
     }
-    parameters {
+    parameters {        
         string (name: appversion, defaultValue: '')
         choice (name: ENV, choices: ["prod","dev"], description: 'Pick something')
     }
@@ -56,6 +56,19 @@ pipeline{
                 }
                 // i - replace in IMAGE_VERSION value with $appversion value , target file is values-dev.yaml          
             }
+        }
+    }
+    posts {
+        always {
+            echo 'deleting the folder'
+            deleteDir()
+        }
+
+        success {
+            echo 'pipeline is successful'
+        }
+        failure {
+            echo 'pipeline has failed'
         }
     }
 
