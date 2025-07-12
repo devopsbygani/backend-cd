@@ -7,6 +7,7 @@ pipeline{
         appVersion = '' // value to be passed by jenkins ci pipeline
         environment = ''
         component = 'backend'
+        account_id = ''
     }
     parameters {        
         string (name: appversion, defaultValue: '')
@@ -19,6 +20,7 @@ pipeline{
              script{
                     appVersion = params.appversion
                     environment = params.ENV
+                    account_id = pipelineGlobals.getAccountID(environment)
                 }
         }
         
